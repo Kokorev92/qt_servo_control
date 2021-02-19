@@ -3,7 +3,6 @@
 
 QSerialPort* port = new QSerialPort();
 
-
 Main_window::Main_window(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Main_window)
@@ -18,6 +17,9 @@ Main_window::Main_window(QWidget *parent)
 Main_window::~Main_window()
 {
     delete ui;
+    if(port->isOpen()){
+        port->close();
+    }
     delete port;
 }
 
