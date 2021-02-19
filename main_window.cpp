@@ -43,6 +43,8 @@ void Main_window::on_pushButton_clicked()
         port->setStopBits(QSerialPort::OneStop);
         port->setDataBits(QSerialPort::Data8);
         port->open(QIODevice::ReadWrite);
+    }
+    if(port->isOpen()){
         on_dial_valueChanged(ui->dial->value());
         ui->pushButton->setEnabled(false);
         ui->pushButton_2->setEnabled(true);
