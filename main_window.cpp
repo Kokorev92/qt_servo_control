@@ -26,11 +26,10 @@ Main_window::~Main_window()
 void Main_window::on_dial_valueChanged(int value)
 {
     ui->lcdNumber->display(value);
-    QByteArray arr;
-    arr.setNum(value);
-    arr.append("\n\r");
+    QByteArray send_arr;
+    send_arr.append((char)value);
     if(port->isOpen()){
-        port->write(arr);
+        port->write(send_arr);
     }
 }
 
