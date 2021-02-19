@@ -18,6 +18,7 @@ Main_window::Main_window(QWidget *parent)
 Main_window::~Main_window()
 {
     delete ui;
+    delete port;
 }
 
 void Main_window::on_dial_valueChanged(int value)
