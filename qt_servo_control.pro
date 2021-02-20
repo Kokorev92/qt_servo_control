@@ -1,4 +1,4 @@
-QT       += core gui serialport
+QT       += core gui serialport quickwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,6 +17,10 @@ HEADERS += \
 
 FORMS += \
     main_window.ui
+
+RESOURCES += \
+    qml.qrc \
+    qml.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -11,10 +11,15 @@ QT_END_NAMESPACE
 class Main_window : public QMainWindow
 {
     Q_OBJECT
+    Q_PROPERTY(int val READ get_val NOTIFY notify_val)
 
 public:
     Main_window(QWidget *parent = nullptr);
     ~Main_window();
+    int get_val();
+
+signals:
+    void notify_val();
 
 private slots:
     void on_dial_valueChanged(int value);

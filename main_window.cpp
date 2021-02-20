@@ -1,5 +1,8 @@
 #include "main_window.h"
 #include "ui_main_window.h"
+#include <QQuickWidget>
+#include <QQmlEngine>
+#include <QQmlContext>
 
 QSerialPort* port = new QSerialPort();
 
@@ -11,7 +14,8 @@ Main_window::Main_window(QWidget *parent)
     for(auto& info: QSerialPortInfo::availablePorts()){
         ui->comboBox->addItem(info.portName());
     }
-
+    ui->quickWidget->engine()->rootContext()->setContextProperty("dial", ui->dial);
+    ui->quickWidget->engine()->rootContext()->setContextProperty("my", this);
 }
 
 Main_window::~Main_window()
@@ -31,6 +35,8 @@ void Main_window::on_dial_valueChanged(int value)
     if(port->isOpen()){
         port->write(send_arr);
     }
+
+    emit notify_val();
 }
 
 void Main_window::on_pushButton_clicked()
@@ -60,4 +66,8 @@ void Main_window::on_pushButton_2_clicked()
         ui->pushButton_2->setEnabled(false);
         ui->comboBox->setEnabled(true);
     }
+}
+
+int Main_window::get_val(){
+    return ui->dial->value();
 }
